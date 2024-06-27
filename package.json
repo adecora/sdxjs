@@ -1,0 +1,29 @@
+{
+  "name": "sdxjs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Colección de ejemplos sobre diseño de software",
+  "main": "",
+  "scripts": {
+    "test": "echo pendiente de test"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "software design",
+    "examples"
+  ],
+  "author": "Alejandro Varela de Cora",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^8.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.2"
+  }
+}
