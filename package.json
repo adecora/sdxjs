@@ -8,7 +8,7 @@
     "test": "echo pendiente de test"
   },
   "prettier": {
-    "semi": true,
+    "semi": false,
     "singleQuote": true
   },
   "keywords": [
@@ -21,7 +21,9 @@
   "license": "ISC",
   "dependencies": {
     "fs-extra": "^11.2.0",
-    "glob": "^8.1.0"
+    "fs-extra-promise": "^1.0.1",
+    "glob": "^8.1.0",
+    "glob-promise": "^6.0.7"
   },
   "devDependencies": {
     "prettier": "^3.3.2"
