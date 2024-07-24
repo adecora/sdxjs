@@ -23,7 +23,8 @@
     "fs-extra": "^11.2.0",
     "fs-extra-promise": "^1.0.1",
     "glob": "^8.1.0",
-    "glob-promise": "^6.0.7"
+    "glob-promise": "^6.0.7",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "prettier": "^3.3.2"
