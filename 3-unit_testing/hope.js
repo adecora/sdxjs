@@ -4,20 +4,54 @@ import caller from 'caller'
 // State of test.
 class Hope {
     constructor () {
+        this.up = []
         this.todo = []
+        this.down = []
         this.passes = []
         this.fails = []
         this.errors = []
     }
 
-    test (comment, callback) {
-        this.todo.push([`${caller()}::${comment}`, callback])
+    setup (callback) {
+        this.up.push([caller(), callback])
     }
 
-    run () {
-        this.todo.forEach(([comment, test]) => {
+    test (comment, callback, tags = []) {
+        this.todo.push([`${caller()}::${comment}`, callback, tags])
+    }
+
+    multiTest (comment, functionToTest, cases, tags = []) {
+        const callBy = caller()
+        cases.forEach(([args, result], idx) => {
+            this.todo.push([
+                `${callBy}::${comment} ${idx}`,
+                () => assert(functionToTest(...args) === result),
+                tags
+            ])
+        })
+    }
+
+    teardown (callback) {
+        this.down.push([caller(), callback])
+    }
+
+    filter (tagName) {
+        this.todo = this.todo.filter(([comment, test, tags]) => tags.includes(tagName))
+    }
+
+    async run () {
+        for (const [comment, test] of this.todo) {
             try {
-                test()
+                const callFile = comment.split('::')[0]
+                const [ , setup = false] = this.up.filter(([file, _]) => file === callFile).pop() ?? []
+                const [ , teardown = false] = this.down.filter(([file, _]) => file === callFile).pop() ?? []
+                
+                if (setup) setup()
+
+                const result = test()
+                if (typeof result === 'object') await result
+                
+                if (teardown) teardown()
                 this.passes.push(comment)
             } catch (e) {
                 if (e instanceof assert.AssertionError) {
@@ -26,7 +60,7 @@ class Hope {
                     this.errors.push(comment)
                 }
             }
-        })
+        }
     }
 
     terse () {

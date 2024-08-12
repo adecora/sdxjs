@@ -1,4 +1,5 @@
 import assert from 'assert'
+import microtime from 'microtime'
 
 // State of test.
 const HopeTest = []
@@ -13,6 +14,7 @@ const hopeThat = (message, callback) => {
 
 // Run all of the test that have been asked for and report summary.
 const main = () => {
+    const start = microtime.nowDouble()
     HopeTest.forEach(([message, test]) => {
         try {
             test()
@@ -26,6 +28,7 @@ const main = () => {
         }
     })
 
+    console.log(`Test's execution time: ${(microtime.nowDouble() - start).toFixed(4)} ms`)
     console.log(`pass ${HopePass}`)
     console.log(`fail ${HopeFail}`)
     console.log(`error ${HopeError}`)
