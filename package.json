@@ -20,11 +20,14 @@
   "author": "Alejandro Varela de Cora",
   "license": "ISC",
   "dependencies": {
+    "caller": "^1.1.0",
     "fs-extra": "^11.2.0",
     "fs-extra-promise": "^1.0.1",
     "glob": "^8.1.0",
     "glob-promise": "^6.0.7",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "microtime": "^3.1.1",
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
     "prettier": "^3.3.2"
