@@ -5,7 +5,7 @@
   "description": "Colección de ejemplos sobre diseño de software",
   "main": "",
   "scripts": {
-    "test": "echo pendiente de test"
+    "test": "mocha */test/test-*.js"
   },
   "prettier": {
     "semi": false,
@@ -30,6 +30,8 @@
     "minimist": "^1.2.8"
   },
   "devDependencies": {
+    "mocha": "^10.7.3",
+    "mock-fs": "^5.2.0",
     "prettier": "^3.3.2"
   }
 }
